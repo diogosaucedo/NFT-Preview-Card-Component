@@ -1,0 +1,64 @@
+@use "colors";
+@use "card-members";
+
+@mixin properties() {
+  // Container contains: &__title-description, &__short-description and
+  // &__rest-info.
+  &__description {
+    // Layout
+    @include card-members.custom-layout(column, left, space-around);
+
+    // Box Model
+    height: 18rem;
+    padding: 1rem 0;
+  }
+
+  // This element is inside the &__description container.
+  &__title-description {
+    @include card-members.custom-font(2rem, 600, colors.$white);
+  }
+
+  // This element is inside the &__description container.
+  &__short-description {
+    @include card-members.custom-font(1.6rem, 300, colors.$soft-blue);
+  }
+
+  // Container contains: &__price and &__date. (inside &__description)
+  &__rest-info {
+    @extend %default-layout;
+  }
+
+  // Contains a image and price.
+  &__price {
+    // Layout
+    @extend %default-layout;
+
+    // Display
+    @include card-members.custom-font(1.4rem, 600, colors.$cyan);
+
+    // Box Model
+    width: 8rem;
+  }
+
+  // Contains a image and date.
+  &__date {
+    // Layout
+    @extend %default-layout;
+
+    // Display
+    @include card-members.custom-font(1.4rem, 600, colors.$soft-blue);
+
+    // Box Model
+    width: 8.5rem;
+  }
+
+  // Horizontal line.
+  &__line {
+    // Box Model
+    height: 0.1rem;
+    background-color: colors.$dark-blue-line;
+
+    // Display
+    border: none;
+  }
+}

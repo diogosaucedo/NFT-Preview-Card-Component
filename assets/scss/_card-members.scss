@@ -1,0 +1,24 @@
+// ===========================================================================
+// Mixins
+// ===========================================================================
+
+@mixin custom-layout($direction, $align-items, $justify-content) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align-items;
+  justify-content: $justify-content;
+}
+
+@mixin custom-font($font-size, $font-weight, $color) {
+  font-size: $font-size;
+  font-weight: $font-weight;
+  color: $color;
+}
+
+// ===========================================================================
+// Extends
+// ===========================================================================
+
+%default-layout {
+  @include custom-layout(row, center, space-between);
+}

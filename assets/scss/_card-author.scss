@@ -1,0 +1,32 @@
+@use "colors";
+@use "card-members";
+
+@mixin properties() {
+  // Contains author's name and image.
+  &__author {
+    // Layout
+    @extend %default-layout;
+
+    // Display
+    @include card-members.custom-font(1.4rem, 300, colors.$soft-blue);
+
+    // Box Model
+    height: 5rem;
+    width: 19.5rem;
+  }
+
+  // This element is inside the &__author container.
+  &__image-author {
+    // Box Model
+    max-height: 60%;
+    border-radius: 50%;
+
+    // Display
+    border: 1px solid colors.$white;
+  }
+
+  // This element is inside the &__author container.
+  &__author-name {
+    @include card-members.custom-font(1.4rem, 400, colors.$white);
+  }
+}
