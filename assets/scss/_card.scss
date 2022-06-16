@@ -1,0 +1,140 @@
+@use "colors";
+
+// ===========================================================================
+// Mixins
+// ===========================================================================
+
+@mixin custom-layout($direction, $align-items, $justify-content) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align-items;
+  justify-content: $justify-content;
+}
+
+@mixin custumize-font($font-size, $font-weight, $color) {
+  font-size: $font-size;
+  font-weight: $font-weight;
+  color: $color;
+}
+
+// ===========================================================================
+// Extends
+// ===========================================================================
+
+%default-layout {
+  @include custom-layout(row, center, space-between);
+}
+
+// ===========================================================================
+// Card
+// ===========================================================================
+
+//
+// The BEM CSS naming convention is used for the card component.
+//
+
+.card {
+  // Layout
+  @include custom-layout(column, left, center);
+
+  // Box Model
+  width: 32rem;
+  border-radius: 1rem;
+  padding: 2rem;
+
+  // Display
+  background-color: colors.$dark-blue-card;
+
+  &__image {
+    border-radius: 0.5rem;
+    max-width: 100%;
+  }
+
+  // Container contains: &__title-description, &__short-description and
+  // &__rest-info.
+  &__description {
+    // Layout
+    @include custom-layout(column, left, space-around);
+
+    // Box Model
+    height: 18rem;
+    padding: 1rem 0;
+  }
+
+  // This element is inside the &__description container.
+  &__title-description {
+    @include custumize-font(2rem, 600, colors.$white);
+  }
+
+  // This element is inside the &__description container.
+  &__short-description {
+    @include custumize-font(1.6rem, 300, colors.$soft-blue);
+  }
+
+  // Container contains: &__price and &__date. (inside &__description)
+  &__rest-info {
+    @extend %default-layout;
+  }
+
+  // Contains a image and price.
+  &__price {
+    // Layout
+    @extend %default-layout;
+
+    // Display
+    @include custumize-font(1.4rem, 600, colors.$cyan);
+
+    // Box Model
+    width: 8rem;
+  }
+
+  // Contains a image and date.
+  &__date {
+    // Layout
+    @extend %default-layout;
+
+    // Display
+    @include custumize-font(1.4rem, 600, colors.$soft-blue);
+
+    // Box Model
+    width: 8.5rem;
+  }
+
+  // Horizontal line.
+  &__line {
+    // Box Model
+    height: 0.1rem;
+    background-color: colors.$dark-blue-line;
+
+    // Display
+    border: none;
+  }
+
+  // Contains author's name and image.
+  &__creator {
+    // Layout
+    @extend %default-layout;
+
+    // Display
+    @include custumize-font(1.4rem, 300, colors.$soft-blue);
+
+    // Box Model
+    height: 5rem;
+    width: 19.5rem;
+  }
+
+  // This element is inside the &__creator container.
+  &__image-creator {
+    // Box Model
+    max-height: 60%;
+    border-radius: 50%;
+
+    // Display
+    border: 1px solid colors.$white;
+  }
+
+  // This element is inside the &__creator container.
+  &__creator-name {
+    @include custumize-font(1.4rem, 400, colors.$white);
+  }
+}
